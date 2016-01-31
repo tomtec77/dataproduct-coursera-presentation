@@ -34,35 +34,7 @@ range of years from 1917 to 2010. You can:
 Explore Data and Fit Models
 ========================================================
 
-```{r data-and-fit-figure, echo=FALSE}
-library(ggplot2)
-
-# Load the data from file
-df <- read.table("nenana.csv", header=TRUE, sep=",")
-
-# Fit a segmented model, considering 1970 as a breakpoint year
-# With the selected breakpoint, we create a variable that is either
-# 0 or 1 if the year is before or after the breakpoint, respectively
-df$Year.Break <- pmax(0, df$Year-1970)
-fit.segment <- lm(Julian.Date ~ Year + Year.Break, data=df)
-
-# Fit a linear model to the complete dataset
-fit.linear <- lm(Julian.Date ~ Year, data=df)
-
-# Plot data and fitted models
-df$SegmentPred <- predict.lm(fit.segment, df)
-    
-fig <- ggplot(df, aes(x=Year, y=Julian.Date))
-fig <- fig + geom_point(size=2)
-fig <- fig + xlab("Year")
-fig <- fig + ylab("Julian Date of Ice Breakup")
-   
-fig <- fig + geom_smooth(method="lm", se=FALSE, size=1.5)
-
-fig <- fig + geom_line(data=df, aes(x=Year, y=SegmentPred), size=1.5,
-                       colour="firebrick")
-print(fig)
-```
+![plot of chunk data-and-fit-figure](riverIceExplorer-figure/data-and-fit-figure-1.png) 
 
 ***
 
@@ -76,12 +48,14 @@ specify the break point (1970 in this example).
 Compare Models
 ========================================================
 
-```{r model-comparison, echo=FALSE}
-library(AICcmodavg)
-library(papeR)
 
-aictab(list(fit1=fit.linear, fit2=fit.segment),
-                modnames=c("Linear","Segmented"), sort=TRUE)
+```
+
+Model selection based on AICc :
+
+          K   AICc Delta_AICc AICcWt Cum.Wt      LL
+Segmented 4 594.36       0.00   0.72   0.72 -292.95
+Linear    3 596.21       1.86   0.28   1.00 -294.97
 ```
 
 The app prints the summaries of the fitted models. Additionally, if two
