@@ -1,0 +1,41 @@
+River Ice Explorer App
+========================================================
+author: Tomás E. Tecce
+date: January 31, 2016
+
+Introduction
+========================================================
+
+Available data suggests that regions in the far north of the Earth are
+warming more quickly than other parts of the world. We can explore this
+situation using ice breakup data available for some rivers in Alaska, USA.
+
+- Local citizens have been recording ice breakup data for the Nenana River
+since 1917
+- Ice breakup is an important time of transition for communities that rely
+on these rivers for transportation, subsistence hunting and fishing, and
+other needs
+- Early thawing can lead to severe ice movement, jamming, damage to
+infrastructure, and destructive floods
+
+Slide 3
+========================================================
+
+```{r}
+summary(cars)
+```
+
+Slide 4
+========================================================
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+
+Slide 5
+========================================================
+
+```{r, echo=FALSE}
+plot(cars)
+```
